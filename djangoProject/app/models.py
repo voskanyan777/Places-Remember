@@ -23,3 +23,8 @@ class Place(models.Model):
     longitude = models.FloatField(null=False, blank=False, verbose_name="Широта посещенного места")
     latitude = models.FloatField(null=False, blank=False, verbose_name="Долгота посещенного места")
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+
+    class Meta:
+        db_table = 'place'
+        verbose_name = "Посещенное место"
+        verbose_name_plural = "Посещенные места"

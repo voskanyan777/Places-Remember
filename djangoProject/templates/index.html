@@ -25,6 +25,6 @@
                 </li>
             </ul>
         </div>
-        <button class="login-btn">Войти с помощью VK</button>
+        <a href="{% url 'social:begin' 'vk-oauth2' %}">Войти</a>
 </div>
 {% endblock %}
