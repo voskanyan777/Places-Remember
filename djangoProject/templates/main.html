@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<div>
-  <h1> {{user.first_name}} {{user.last_name}}</h1>
-</div>
+
+  <h1 class="user-info"> Hello, {{user.first_name}} {{user.last_name}}!</h1>
+  {% if not user_places %}
+    <div class="text-for-new-user">
+        <h1>У нас нет ни одного воспоминания</h1>
+        <button class="add-place-btn">Добавить воспоминание</button>
+    </div>
+  {% endif %}
+
 {% endblock %}
