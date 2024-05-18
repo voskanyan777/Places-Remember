@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <h1 class="user-info"> Hello, {{user.first_name}} {{user.last_name}}!</h1>
+  <div class="main-info">
+    <h1 class="user-info"> Hello, {{user.first_name}} {{user.last_name}}!</h1>
+    <a href="{% url 'logout' %}" class="logout-btn">Выйти</a>
+  </div>
   {% if not user_places %}
     <div class="text-for-new-user">
         <h1>У нас нет ни одного воспоминания</h1>
