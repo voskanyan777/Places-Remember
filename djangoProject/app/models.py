@@ -6,7 +6,7 @@ User = get_user_model()
 
 class UserImage(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Пользователь")
-    image = models.ImageField(verbose_name="Изображение")
+    image = models.TextField(verbose_name="ссылка на изображение")
 
     class Meta:
         db_table = 'user_image'
@@ -14,7 +14,7 @@ class UserImage(models.Model):
         verbose_name_plural = "Изображении пользователей"
 
     def __str__(self):
-        return str(self.user.name)
+        return str(self.user.username)
 
 
 class Place(models.Model):

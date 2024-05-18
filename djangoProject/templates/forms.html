@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form class="place-form" action="{% url 'app:add_place' %}" method="post", enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+        <button>Добавить место</button>
+    </form>
+
+{% endblock %}
