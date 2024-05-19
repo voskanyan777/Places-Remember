@@ -1,18 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <h1 class="user-info"> Hello, {{user.first_name}} {{user.last_name}}!</h1>
-  <div class="tools">
-    <img src="{{ image_url }}" alt="user image" class="user-image">
-    <a href="{% url 'logout' %}" class="logout-btn">Выйти</a>
-  </div>
-  {% if not user_places %}
-    <div class="text-for-new-user">
-        <h1>У вас нет ни одного воспоминания</h1>
-        <a href="/add_place"><button class="add-place-btn">Добавить воспоминание</button></a>
+<div class="main-info">
+    <h1 class="user-info"> Hello, {{user.first_name}} {{user.last_name}}!</h1>
+    <div class="tools">
+        <img src="{{ image_url }}" alt="user image" class="user-image">
+        <a href="{% url 'logout' %}" class="logout-btn">Выйти</a>
     </div>
-  {% else %}
-    <h1>Воспоминания есть</h1>
-  {% endif %}
+</div>
+{% if not user_places %}
+<div class="text-for-new-user">
+    <h1>У вас нет ни одного воспоминания</h1>
+    <a href="/add_place"><button class="add-place-btn">Добавить воспоминание</button></a>
+</div>
+{% else %}
+<h1 style="text-align: center">Ваши посещенные места</h1>
+<a href="/add_place"><button class="add-place-btn">Добавить воспоминание</button></a>
+<div class="places">
+    {% for place in user_places%}
+    <div class="user-place">
+        <p>Название: {{place.name}}</p>
+        <p>Описание: {{place.description}}</p>
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endif %}
 
 {% endblock %}
