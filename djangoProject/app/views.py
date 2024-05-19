@@ -1,10 +1,16 @@
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from .models import Place, UserImage
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, FormView
+
 from . import forms
+from .models import Place, UserImage
+
+
 def index(request):
     return render(request, 'index.html')
+
 
 @login_required
 def main_page(request):
@@ -16,10 +22,24 @@ def main_page(request):
     }
     return render(request, 'main.html', context)
 
+
 def logout_user(request):
     logout(request)
     return render(request, 'index.html')
 
+
+@login_required()
 def add_place(request):
-    form = forms.PlaceForm()
+    # form = forms.PlaceForm()
+    # return render(request, 'forms.html', {'form': form})
+    if request.method == 'POST':
+        form = forms.PlaceForm(request.POST)
+        if form.is_valid():
+            place = form.save(commit=False)
+            place.user = request.user
+            place.save()
+            return redirect('main_page')
+    else:
+        form = forms.PlaceForm()
     return render(request, 'forms.html', {'form': form})
+

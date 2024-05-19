@@ -23,6 +23,9 @@
 // myMap.controls.add(searchControl);
 //   });
 //
+const longitudeForm = document.getElementsByName('longitude')[0]
+const latitudeForm = document.getElementsByName('latitude')[0]
+const reviewForm = document.getElementById('place-form')
 ymaps.ready(function() {
     var map = new ymaps.Map('map', {
         center: [56.10, 92.9],
@@ -30,11 +33,16 @@ ymaps.ready(function() {
         controls: []
     });
 
-
     if (map) {
         map.events.add('click', function(event){
             map.geoObjects.removeAll    ()
             map.geoObjects.add(new ymaps.Placemark(event.get('coords')));
+            longitudeForm.value = event.get('coords')[0]
+            latitudeForm.value = event.get('coords')[1]
         })
     }
 });
+reviewForm.addEventListener("submit", function(event){
+    // event.preventDefault();
+    console.log('click');
+})

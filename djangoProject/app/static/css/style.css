@@ -61,6 +61,9 @@ h1{
     margin-left: 50%;
     transform: translateX(-50%);
 }
+.add-place-btn{
+    cursor: pointer;
+}
 .tools {
     position: absolute;
     right: 10px;
@@ -82,4 +85,7 @@ form input {
 .add-review-btn{
     margin-top: 20px;
     margin-left: 200px;
+}
+.add-review-btn:hover{
+    cursor: pointer;
 }

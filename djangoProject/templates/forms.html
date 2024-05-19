@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1 style="text-align: center">Оставьте свое впечатление о посещенном месте</h1>
-    <form class="place-form" action="" method="post" enctype="multipart/form-data">
+    <form class="place-form" action="{% url 'add_place' %}" method="post" enctype="multipart/form-data" id="place-form">
         {% csrf_token %}
         {{form}}
-        <button type="submit" class="add-review-btn">Добавить впечатление</button>
+        <button type="submit" class="add-review-btn" id="submit-btn">Сохранить впечатление</button>
     </form>
     <div id="map" style="width: 600px; height: 400px; margin-left: 660px; margin-top: 30px">
 
