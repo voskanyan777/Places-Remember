@@ -8,9 +8,11 @@
   </div>
   {% if not user_places %}
     <div class="text-for-new-user">
-        <h1>У нас нет ни одного воспоминания</h1>
-        <button class="add-place-btn">Добавить воспоминание</button>
+        <h1>У вас нет ни одного воспоминания</h1>
+        <a href="/add_place"><button class="add-place-btn">Добавить воспоминание</button></a>
     </div>
+  {% else %}
+    <h1>Воспоминания есть</h1>
   {% endif %}
 
 {% endblock %}

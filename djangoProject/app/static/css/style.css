@@ -71,3 +71,15 @@ h1{
 .main-info{
     display: flex;
 }
+.place-form{
+    margin-top: 50px;
+    margin-left: 600px;
+
+}
+form input {
+    margin-top: 20px;
+}
+.add-review-btn{
+    margin-top: 20px;
+    margin-left: 200px;
+}
