@@ -40,7 +40,7 @@ def add_place(request):
     return render(request, 'forms.html', {'form': form})
 
 
-@login_required()
+@login_required
 def edit_place(request, place_id):
     place = get_object_or_404(Place, id=place_id, user=request.user)
     if request.method == 'POST':
@@ -50,9 +50,4 @@ def edit_place(request, place_id):
             return redirect('main_page')
     else:
         form = forms.PlaceForm(instance=place)
-    return render(request, 'forms.html', {'form': form})
-
-# @login_required()
-# def place_detail(request, pk):
-#     place = get_object_or_404(Place, pk=pk)
-#     return redirect('add_place')
+    return render(request, 'change_review.html', {'form': form, 'place_id': place_id})

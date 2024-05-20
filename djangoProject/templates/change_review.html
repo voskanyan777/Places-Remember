@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
+    <h1 style="text-align: center">Измените описание посещенного места</h1>
+    <form class="place-form" action="{% url 'edit_place' place_id %}" method="post" enctype="multipart/form-data" id="place-form">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="add-review-btn" id="submit-btn">Сохранить впечатление</button>
+    </form>
+    <div id="map" style="width: 600px; height: 400px; margin-left: 660px; margin-top: 30px"></div>
 
-
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=df3bf75b-32cc-44e0-9884-7846a5a9aa70&lang=ru_RU" type="text/javascript"></script>
+    <script src="../app/static/js/map.js" type="text/javascript"></script>
 {% endblock %}
