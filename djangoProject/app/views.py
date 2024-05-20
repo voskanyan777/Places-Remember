@@ -1,8 +1,6 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
-from django.views.generic import ListView, FormView
+from django.shortcuts import render, redirect, get_object_or_404
 
 from . import forms
 from .models import Place, UserImage
@@ -30,8 +28,6 @@ def logout_user(request):
 
 @login_required()
 def add_place(request):
-    # form = forms.PlaceForm()
-    # return render(request, 'forms.html', {'form': form})
     if request.method == 'POST':
         form = forms.PlaceForm(request.POST)
         if form.is_valid():
@@ -43,3 +39,20 @@ def add_place(request):
         form = forms.PlaceForm()
     return render(request, 'forms.html', {'form': form})
 
+
+@login_required()
+def edit_place(request, place_id):
+    place = get_object_or_404(Place, id=place_id, user=request.user)
+    if request.method == 'POST':
+        form = forms.PlaceForm(request.POST, instance=place)
+        if form.is_valid():
+            form.save()
+            return redirect('main_page')
+    else:
+        form = forms.PlaceForm(instance=place)
+    return render(request, 'forms.html', {'form': form})
+
+# @login_required()
+# def place_detail(request, pk):
+#     place = get_object_or_404(Place, pk=pk)
+#     return redirect('add_place')

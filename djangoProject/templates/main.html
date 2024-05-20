@@ -21,7 +21,7 @@
     <div class="user-place">
         <p>Название: {{place.name}}</p>
         <p>Описание: {{place.description}}</p>
-
+        <a href="{% url 'edit_place' place.id %}">Редактировать</a>
     </div>
     {% endfor %}
 </div>

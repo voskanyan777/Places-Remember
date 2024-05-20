@@ -25,24 +25,30 @@
 //
 const longitudeForm = document.getElementsByName('longitude')[0]
 const latitudeForm = document.getElementsByName('latitude')[0]
-const reviewForm = document.getElementById('place-form')
 ymaps.ready(function() {
+    let centerCoords;
+    if (Boolean(longitudeForm.value) && Boolean(latitudeForm.value)){
+        centerCoords = [longitudeForm.value, latitudeForm.value]
+    }
+    else{
+        centerCoords = [56.10, 92.9];
+    }
     var map = new ymaps.Map('map', {
-        center: [56.10, 92.9],
+        center: centerCoords,
         zoom: 10,
         controls: []
     });
-
-    if (map) {
-        map.events.add('click', function(event){
-            map.geoObjects.removeAll    ()
-            map.geoObjects.add(new ymaps.Placemark(event.get('coords')));
-            longitudeForm.value = event.get('coords')[0]
-            latitudeForm.value = event.get('coords')[1]
-        })
+    // Проверяем, что в форме широты и долготы есть значения
+    if (Boolean(longitudeForm) && Boolean(latitudeForm)){
+        const coords = [longitudeForm.value, latitudeForm.value]
+        // console.log(coords)
+        map.geoObjects.add(new ymaps.Placemark(coords))
     }
+
+    map.events.add('click', function(event){
+        map.geoObjects.removeAll    ()
+        map.geoObjects.add(new ymaps.Placemark(event.get('coords')));
+        longitudeForm.value = event.get('coords')[0]
+        latitudeForm.value = event.get('coords')[1]
+    })
 });
-reviewForm.addEventListener("submit", function(event){
-    // event.preventDefault();
-    console.log('click');
-})
