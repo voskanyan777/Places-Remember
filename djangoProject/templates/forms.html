@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1 style="text-align: center">Оставьте свое впечатление о посещенном месте</h1>
+    <h1 style="text-align: center">Оставьте свое впечатление о посещенном месте. <br> (Поставить метку можно кликом на карту)</h1>
     <form class="place-form" action="{% url 'add_place' %}" method="post" enctype="multipart/form-data" id="place-form">
         {% csrf_token %}
         {{form}}
