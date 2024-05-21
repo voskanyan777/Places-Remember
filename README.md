@@ -4,15 +4,16 @@
 # Запуск проекта
 Запуск проекта можно осуществить на локальном компьютере, либо через docker
 # Запуск через Docker
-Сборка проекта: ```docker-compose build```
-Миграция моделей: docker-compose ```docker-compose run --rm django_app python manage.py migrate```
+Сборка проекта: ```docker-compose build```  
+Миграция моделей: docker-compose ```docker-compose run --rm django_app python manage.py migrate```  
 Примечание. Может возникнуть ошибка, что django не может подключиться к базе данных. Для устранения ошибки повторно выполните
-вышеуказанную команду
+вышеуказанную команду  
 Запуск web приложения: ```docker-compose up```
-После запуска контейнеров перейдите по следующему URL в своем браузере: http://localhost:80
+После запуска контейнеров перейдите по следующему URL в своем браузере: http://localhost:80  
 Запуск тестов: ```docker-compose run --rm django_app python manage.py test app```
 
 # Запуск на локальном компьютере
+* Убедитесь, что у вас на компьютере установлен PostgreSQL (pgAdmin4)
 * Создайте виртуальное окружение с python версии 3.10
 * Установите необходимые зависимости командой ```pip install -r requirements.txt```
 * Создайте в корневой директории файл .env, и поместите туда следующие данные:
